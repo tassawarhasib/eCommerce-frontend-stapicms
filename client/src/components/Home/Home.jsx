@@ -18,18 +18,17 @@ const Home = () => {
     getCategories();
   }, []);
 
-  const getProducts = () => {
-    fetchDataFromApi("/api/products?populate=*").then((res) => {
-      console.log(res)
-      setProducts(res)
+  const getProducts = async () => {
+    await fetchDataFromApi("/api/products?populate=*").then((res) => {
+      console.log("Home Componenet Data Fecth", res)
+      setProducts(res.data);
     });
   };
 
   const getCategories = async () => {
     await fetchDataFromApi("/api/categories?populate=*").then((res) => {
       // console.log(res)
-      console.log("Category Fetched: ", res);
-
+      // console.log("Category Fetched: ", res);
       setCategories(res.data);
     });
   };

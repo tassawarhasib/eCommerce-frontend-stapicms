@@ -5,33 +5,31 @@ import "./Category.scss";
 const Category = ({ categories }) => {
   return (
     <div className="shop-by-category">
+
+
       <div className="categories">
         {categories.map((item) => (item.attributes.img.data.map((imgItem) => (
-          <div key={imgItem}>
+          <div className="category" key={imgItem}>
             <img src={process.env.REACT_APP_DEV_URL + imgItem.attributes.url} alt="categories image" />
           </div>
         )
         )))}
       </div>
+
+      {/* <div className="categories">
+        {console.log(categories)}
+        {categories.data.map((item) => (
+          <div key={item.id} className="category">
+            <img src={process.env.REACT_APP_DEV_URL + item.attributes.img.data.attributes.url} alt="" />
+          </div>
+        ))}
+      </div> */}
+
     </div >
   );
 };
 
+
+
+
 export default Category;
-
-{/* <div className="categories">
-        {categories && categories.data ? (
-          categories.data.map((Object) => (
-            <div key={Object.id} className="categor">
-              {Object.attributes.img && Object.attributes.img.data && Object.data.attributes.img.data.attributes.url ? (
-                <img src={process.env.REACT_APP_DEV_URL + Object.data.attributes.img.data.attributes.url} alt="" />
-              ) : (
-                <p>Image not available</p>
-              )}
-            </div>
-          ))
-        ) : (
-          <p>Loading...</p>
-        )}
-
-      </div> */}

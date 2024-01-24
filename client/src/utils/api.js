@@ -11,11 +11,11 @@ export const fetchDataFromApi = async (url) => {
         const { data } = await axios.get(process.env.REACT_APP_DEV_URL + url, 
             params
         );
-        console.log("API FETCH");
+        // console.log("API FETCH");
         return data;
     } catch (error) {
-        console.log("ERROR API FETCH");
-        console.log(error);
+        // console.log("ERROR API FETCH");
+        // console.log(error);
         return error;
     }
 }
