@@ -12,27 +12,31 @@ import RealatedProducts from "./RelatedProducts/RelatedProducts";
 
 import useFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Context } from "../../utils/context";
+
 
 const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`)
+  const { handleAddToCart } = useContext(Context);
 
-  const increment = () => {
+
+  const quantity_increment = () => {
     setQuantity((prevState) => prevState + 1);
   };
 
-  const decrement = () => {
+  const quantity_decrement = () => {
     setQuantity((prevState) => {
       if (prevState === 1) return 1;
       return prevState - 1;
     });
   };
 
-
   if (!data) return;
   const product = data.data[0].attributes;
+  const productId = data.data[0];
   const categoeyIdIs = data[0]?.attributes?.categories?.data[0]?.id;
 
   return (
@@ -49,11 +53,16 @@ const SingleProduct = () => {
 
             <div className="cart-buttons">
               <div className="quantity-buttons">
-                <span onClick={decrement}>-</span>
+                <span onClick={quantity_decrement}>-</span>
                 <span>{quantity}</span>
-                <span onClick={increment}>+</span>
+                <span onClick={quantity_increment}>+</span>
               </div>
-              <button className="add-to-cart-button">
+              <button className="add-to-cart-button"
+                onClick={() => {
+                  handleAddToCart(productId, quantity);
+                  setQuantity(1);
+                }}
+              >
                 <FaCartPlus size={20} />
                 ADD TO CART
               </button>

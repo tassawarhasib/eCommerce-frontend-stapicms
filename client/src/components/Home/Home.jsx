@@ -20,7 +20,7 @@ const Home = () => {
 
   const getProducts = async () => {
     await fetchDataFromApi("/api/products?populate=*").then((res) => {
-      console.log("Home Componenet Data Fecth", res)
+      // console.log("Home Componenet Data Fecth", res)
       setProducts(res.data);
     });
   };
