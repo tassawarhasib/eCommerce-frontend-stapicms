@@ -1,15 +1,18 @@
+import { useNavigate } from 'react-router-dom';
+
 import "./Category.scss";
 // import cat1 from "../../../assets/category/cat-1.jpg";
 // import { useEffect, useState } from "react";
 
 const Category = ({ categories }) => {
+
+  const navigate = useNavigate();
+
   return (
     <div className="shop-by-category">
-
-
       <div className="categories">
-        {categories.map((item) => (item.attributes.img.data.map((imgItem) => (
-          <div className="category" key={imgItem}>
+        {categories?.map((item) => (item.attributes.img.data.map((imgItem) => (
+          <div className="category" key={imgItem} onClick={()=> navigate(`/category/${item.id}`)} >
             <img src={process.env.REACT_APP_DEV_URL + imgItem.attributes.url} alt="categories image" />
           </div>
         )
