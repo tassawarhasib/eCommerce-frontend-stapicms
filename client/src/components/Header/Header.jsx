@@ -18,7 +18,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const { cartCount } = useContext(Context);
-  console.log("cartCount", cartCount);
+  // console.log("cartCount", cartCount);
 
   const handleScroll = () => {
     const offset = window.scrollY;
